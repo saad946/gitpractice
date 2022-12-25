@@ -1,0 +1,191 @@
+GIT:
+Version control system VCS: tracks and manage changes to the filesystem.so that we can track chasnges made by any user at any time, can trace back to previous versions
+also called revision control or source control system
+code merging and managing difficult without git
+can be act aS DATABASE to , changes that we submit are snap shots, previous changes can be tracked through it.
+so you can see how much it diffeer from current version.
+it is independent of the kind of project,technology,framework you are working with. it tracks changes in file avalible in your hard drive,by taking their snaps.
+Usecase:
+1. Collaboration: VCS allow you to murge all the changes into common version
+through it everybody in team is absoulterly dree to to work at any time or at any file system.
+2. Storing Versions: saving version of your project after making changes is essential habbit. 
+   it save the changes that we made in file, no need to make multiple bavk ups,all you need is one version that you are working with.
+3. Restoring previous version: being able to restore older versions of a file or whole project if changes you made lately prove to be garbage.
+   can easikly move back to previous versions
+4. Understanding what happened: exact line by line changes can be evaluated
+5. Backup: git ats as a backup, code avaliable on centrallocation, user clone codes from it and submit the changes there, so every one can track changes commit by any user, at what time.
+Different types of VCS:
+VSS (Microsoft visual sourcesafe)- for small software development--- file in use by any user was locked so no other user can access it
+SVN (Apache Subversion): it is centralized VCS, no file locking system, but user dont have full copy of codes but have a partial copy of code
+GIT: each user has its own copy, he has full project, if central server fails any users machine can be worked as server. as he has full content
+
+Types VCS:
+Centralized vcs-SVC-data centre to the central server repo,all snapshots on central server,user dont have copy,must have internetand for changes commit should be done, data lost issues.
+distributed vcs-Git-each user has working copychanges are saved on local machines,can later commit changes to central server, no data loss chance as each user has its own copy locally.
+
+push- data send to central server
+pull- data get from central server
+
+install git
+ git config --global user.name "saad"
+ git config --global user.email "saadullah946@gmail.com"
+
+Git operations:
+initializing 
+add
+commmit
+pull
+push
+branching
+merging 
+rebasing
+
+Repo: whrer all commits,version,code are held, act as data base for VCS.
+Workind dir: root or current folder of you project/git-folder tracing changes in your application.
+File status: when you create file through git init,they will be in untracked mode(git will not track changes)
+             through git add it moves to unmodified stage
+             when some changes are done it moves to modified stage
+             when you commit to make its snap shop shot,it moves to Staged and then to untarcked stage.
+Staging area: it is a virtual place that collects all files you want to include in next commit
+ git init= cretes directory in root path,files can be created here too/untracked files
+ git add . (tracked files) or
+ git add 1.txt 2.txt
+ git add *.txt
+ git commit -m "implemented file" ---to refer chamges in file
+ git log= name,username,time,message
+ git status
+
+
+Commit Hash:
+as multiple people can work in parallel,commiting their work offline, without being connected to a shred repo---to uniquely  identify the commits of user working in same repo
+
+Git reset:
+ git reset - command will remove file from staging area not commit area (Now Unstaged-changing not removed)
+ git reset --hard = also changes will be remove and now in unstaged area whether staged or unstaged
+
+Ignoring Files:
+ vi .gitignore
+  path/to/file.txt
+  filenmae.txt
+  FolderNmae
+  *.ext
+  *.xlsx
+  path/to/folder/*
+
+Why branches are important?
+in any project there can be multiple different contexts where work happens
+we switch branches for context changed--just like a copy
+context-variation
+for context managemnt it is used and merged after working is dont to master branch
+gives freedom to work in parallel withouy messing up
+
+ git branch--ls of branches
+ git branch -v =show ls of branches with some details
+ git branch hello=create new branch with name hello
+ git checkout hello=switch to hello branch
+ git checkout hello -f
+ git log hello..master=show commit difference in two branches
+ git merge hello=merge hello branch into active branch
+
+current branch (master) s dsri branch bntih
+current branch k content just visible hnge
+
+Stash:
+If you want to switch to another branch without commiting changes in current branch
+stash save changes temporarily
+later, you can restore the changes from stash in your working copy and continue working from where you left
+can create as many stash we need
+
+ git stash= save local changes stash clipboard
+ git stash save <name>= sav local changes in stash clipboard with provided given nAME
+ git stash list= show lists of stashes
+ git stash pop= apply latest stash and remove it from clipboard
+ git stash apply stashname= apply the specific stash and that stash will remain saved in clipboard
+ git stash clear= clear your stash history
+ 
+Short/Long lived branch:
+short-bugs removing,features
+long-remains in complete project lifecycle
+
+
+Remote Repositories:
+code on central mchines. team mates access files/clone from it
+have to takecare of dataloss/downtime/backup
+
+GitHub:
+online service for git to create remote repositories on github's server and collabrates with team mates
+
+ git push= push changes to remote repo
+ git fetch= fetch cahnges from remote repo (just to check if there is any change in repo)
+ git merge= merge changes that was fetch by "git fetch"
+ git pull= fetch and merge changes from repo (where your repo is connected)
+ git remote -v=  show remote urgit remote show orign (remote repo summary)
+ git remote add myremote "github/saad946.com"= will add remote repo in local repo
+ git clone REPOURL
+ git push origin(repo name) master(branch name)
+ git log remote repo/branch
+ git remote -v (which remote repos are connected with this local repo)
+ git remote add origin https://github.com/saad946/gitpractice.git
+ git remote show origin (to which repo you can pull and push you current loacl repo)
+ git push -u origin(repoName) master(branch)
+ git pull origin master (commit done in remote repo now shown in local repo)
+
+Prctice 
+pull and push from/to local repo
+create branch on local/remote repo
+
+Git workflow (git-flow):
+When we are working in teams we want to follow some rules while working on any project
+for that we should follow branching model in where there should be specific branches for specific purpose.
+
+when working in team we want to review code of team members and merge code in main branch only after that.
+for this purpose github provides pull request feature.
+so,it will avoid unintented code in long lived branch.
+
+Branches example:
+master
+development (Long-lived branch)
+production (Long-lived branch)
+feature/rss-feed (Short-lived branch)
+hotfix/missing link (Short-lived branch)
+
+Create pull requests to merge branches
+give access of repo to team members through setting/collabrators option
+
+Forking:
+When you want to work on someones else's repo on which you don't have write acess, you create fork of it.
+Mostly done in public projects.where community contributes
+After clone you can work in repo as it is your own repo.
+A pull request is a way to tell the the author to merge it if find no issue within it and also useful.
+ git init
+ git add origin GITLINK
+ git remote -v
+Modify the pulled file
+go into that folder
+ git add.
+ git commit -m "added"
+ git status
+ git remote -v
+ git pull --rebase origin master
+ git push -u (reponame) branchName
+
+Deleting Branches:
+ git branch -d BranchName
+ git branch -dr origin/BranchName = d(delete),r(remote branch)
+ git push hello(repo) --delete tests(branch name)
+
+Undoing local changes:
+discard changes in single file
+ git checkout HEAD <file/to/restore) 
+discard all changes that are not commited
+ git reset --hard HEAD
+ 
+ git reset <commitHash>
+ git reset --hard <commitHash>
+ git reset --keep <commitHash>
+git reset does not actuall delete any commit but revert the changes of previous commit by creating new commit.
+git reset hard neither produce new commit nor does delete old ones.deletes the commit history,roll back to previous commit
+git reset keep hold the changes uncommited and rolled back to older commit.
+
+
+
